@@ -12,7 +12,7 @@ on:
 jobs:
   publish:
     name: Publish DNS config from main
-    runs-on: ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
