@@ -1,0 +1,2 @@
+octodns==1.14.0
+octodns-digitalocean==1.0.0

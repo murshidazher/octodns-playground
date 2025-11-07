@@ -1,0 +1,31 @@
+name: octodns-sync
+
+on:
+  # Deploy config whenever DNS changes are pushed to main.
+  push:
+    branches:
+      - main
+    paths:
+      - '*.yaml'
+
+jobs:
+  publish:
+    name: Publish DNS config from main
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - run: pip install -r requirements.txt
+
+      - uses: solvaholic/octodns-sync@main
+        with:
+          config_path: config/config.yaml
+          add_pr_comment: 'Yes'
+          pr_comment_token: '${{ github.token }}'
+          doit: '--doit'
+        env:
+          DIGITALOCEAN_OAUTH_TOKEN: ${{ secrets.DIGITALOCEAN_OAUTH_TOKEN }}

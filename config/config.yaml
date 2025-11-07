@@ -1,0 +1,17 @@
+---
+providers:
+  config:
+    class: octodns.provider.yaml.YamlProvider
+    directory: ./config
+    default_ttl: 300
+    enforce_order: True
+  digitalocean:
+    class: octodns_digitalocean.DigitalOceanProvider
+    token: env/DIGITALOCEAN_OAUTH_TOKEN
+
+zones:
+  fiat0x.com.:
+    sources:
+      - config
+    targets:
+      - digitalocean
