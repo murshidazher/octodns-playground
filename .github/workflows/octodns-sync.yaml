@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - '*.yaml'
+      - 'config/*.yaml'
   workflow_dispatch:
 
 jobs:
@@ -25,8 +25,8 @@ jobs:
       - uses: solvaholic/octodns-sync@main
         with:
           config_path: config/config.yaml
-          add_pr_comment: 'Yes'
-          pr_comment_token: '${{ github.token }}'
+          # add_pr_comment: 'Yes'
+          # pr_comment_token: '${{ github.token }}'
           doit: '--doit'
         env:
           DIGITALOCEAN_OAUTH_TOKEN: ${{ secrets.DIGITALOCEAN_OAUTH_TOKEN }}
